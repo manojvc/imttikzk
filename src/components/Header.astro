@@ -22,21 +22,22 @@ const nav = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 bg-white border-b-[3px] border-gold-500 shadow-sm">
+<header id="site-header" class="sticky top-0 z-50 bg-white border-b-[3px] border-gold-500 shadow-sm transition-shadow duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between py-2 gap-4">
+    <div id="header-inner" class="flex items-center justify-between gap-4">
 
       <!-- Logo -->
       <a href="/" class="flex items-center gap-3 shrink-0 group" aria-label="IMTTI Kazhakkoottam – Home">
         <img
+          id="header-logo"
           src="/images/imtti-logo-official.png"
           alt="IMTTI – International Montessori Teacher Training Institute"
-          class="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          class="w-auto object-contain group-hover:scale-105"
           loading="eager"
         />
         <div class="hidden md:block border-l-2 border-gold-500 pl-3">
-          <div class="text-brand-700 font-display font-bold text-sm leading-tight">IMTTI Kazhakkoottam</div>
-          <div class="text-gray-500 text-xs leading-tight">Montessori Teacher Training · Trivandrum</div>
+          <div id="header-name" class="text-brand-700 font-display font-bold leading-tight">IMTTI Kazhakkoottam</div>
+          <div id="header-sub" class="text-gray-500 leading-tight">Montessori Teacher Training · Trivandrum</div>
         </div>
       </a>
 
@@ -126,6 +127,24 @@ const currentPath = Astro.url.pathname;
   </div>
 </header>
 
+<style>
+  /* ── Default (tall) state ── */
+  #header-inner  { padding-top: 1rem; padding-bottom: 1rem; transition: padding 0.3s ease; }
+  #header-logo   { height: 4rem;      transition: height 0.3s ease; }
+  #header-name   { font-size: 1.2rem; transition: font-size 0.3s ease; }
+  #header-sub    { font-size: 0.75rem; opacity: 1; overflow: hidden; max-height: 2rem;
+                   transition: font-size 0.3s ease, opacity 0.3s ease, max-height 0.3s ease; }
+
+  /* ── Compact state – single class on <header> drives everything ── */
+  #site-header.is-scrolled #header-inner { padding-top: 0.35rem; padding-bottom: 0.35rem; }
+  #site-header.is-scrolled #header-logo  { height: 2.75rem; }
+  #site-header.is-scrolled #header-name  { font-size: 0.875rem; }
+  #site-header.is-scrolled #header-sub   { font-size: 0; opacity: 0; max-height: 0; }
+
+  /* ── Shadow boost when scrolled ── */
+  #site-header.is-scrolled { box-shadow: 0 4px 16px rgba(27,40,120,0.10); }
+</style>
+
 <script>
   const btn   = document.getElementById('mobile-menu-btn');
   const menu  = document.getElementById('mobile-menu');
@@ -137,4 +156,28 @@ const currentPath = Astro.url.pathname;
     iClose?.classList.toggle('hidden');
     btn.setAttribute('aria-expanded', String(!hidden));
   });
+
+  // Shrinking header – single class toggle with hysteresis to prevent flicker
+  const header = document.getElementById('site-header');
+  let isScrolled = false;
+  let rafPending = false;
+
+  function update() {
+    rafPending = false;
+    const y = window.scrollY;
+    // Hysteresis: collapse at 80px, expand only below 30px
+    const shouldCollapse = isScrolled ? y > 30 : y > 80;
+    if (shouldCollapse !== isScrolled) {
+      isScrolled = shouldCollapse;
+      header?.classList.toggle('is-scrolled', isScrolled);
+    }
+  }
+
+  // Set correct state immediately on load (no animation flash)
+  isScrolled = window.scrollY > 80;
+  if (isScrolled) header?.classList.add('is-scrolled');
+
+  window.addEventListener('scroll', () => {
+    if (!rafPending) { rafPending = true; requestAnimationFrame(update); }
+  }, { passive: true });
 </script>
