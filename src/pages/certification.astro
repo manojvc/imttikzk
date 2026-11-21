@@ -1,0 +1,114 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import WhatsAppButton from '@components/WhatsAppButton.astro';
+import BatchBanner from '@components/BatchBanner.astro';
+import facts from '@data/facts.json';
+
+const { brand } = facts;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What is CACHE Level 3 and is it valid in the Gulf?', acceptedAnswer: { '@type': 'Answer', text: 'CACHE (Council for Awards in Care, Health and Education) is a UK awarding body. Level 3 in Childcare and Education is widely recognised by schools and nurseries in the Gulf (UAE, Qatar, Kuwait, Bahrain) as a professional early-years qualification. Combined with embassy attestation, it qualifies holders to work in Gulf schools.' } },
+    { '@type': 'Question', name: 'What is IAO accreditation?', acceptedAnswer: { '@type': 'Answer', text: 'IAO (International Accreditation Organization), based in the USA, is an independent body that evaluates and accredits educational institutions for quality. IMTTI is IAO accredited, making its certificates internationally recognised.' } },
+    { '@type': 'Question', name: 'What is embassy attestation for a Montessori certificate?', acceptedAnswer: { '@type': 'Answer', text: 'Embassy attestation is the process of getting your educational certificate verified and stamped by the respective country\'s embassy in India. It is required for employment in Gulf countries and is available for IMTTI Montessori certificates.' } },
+  ],
+};
+---
+
+<BaseLayout
+  title="Certification – IAO-USA, CACHE Level 3 & Embassy Attestation | IMTTI Kazhakkoottam"
+  description="IMTTI Kazhakkoottam courses carry IAO-USA international certification and UK CACHE Level 3. Embassy attestation available for Gulf employment. Learn what each credential means."
+  schema={faqSchema}
+>
+  <BatchBanner slot="header" />
+  <Header slot="header" />
+
+  <section class="py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-display text-4xl font-bold text-gray-900 mb-4 text-center">Certifications & Accreditations</h1>
+      <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+        IMTTI Kazhakkoottam courses carry internationally recognised credentials that open doors in India, the Gulf, and beyond. Here is what each certification means and why it matters.
+      </p>
+
+      <div class="space-y-8">
+        {[
+          {
+            badge: 'IAO-USA',
+            title: 'International Accreditation Organization (IAO), USA',
+            body: 'The IAO is a US-based independent accreditation body that evaluates educational institutions for quality and international standards. IMTTI\'s IAO accreditation means your certificate is recognised as an internationally valid qualification — a critical credential when applying for teaching jobs outside India.',
+          },
+          {
+            badge: 'CACHE L3',
+            title: 'UK CACHE Level 3 Certification',
+            body: 'CACHE (Council for Awards in Care, Health and Education) is a leading UK awarding body for early-years professionals. A CACHE Level 3 in Childcare and Education is a standard requirement for Montessori and nursery teaching positions in the Gulf (UAE, Qatar, Kuwait, Bahrain). It is awarded with the PG Diploma courses at IMTTI.',
+          },
+          {
+            badge: 'Attestation',
+            title: 'Embassy Attestation',
+            body: 'For Gulf employment, your Indian educational certificates must be attested — verified and stamped by the Ministry of External Affairs (MEA) and the relevant country\'s embassy (e.g., UAE, Qatar, Bahrain). IMTTI Kazhakkoottam supports its graduates through this attestation process.',
+          },
+          {
+            badge: 'ISO 9001',
+            title: 'ISO 9001:2018 (National Brand)',
+            body: 'The IMTTI national institution is ISO 9001:2018 certified, confirming that quality management systems are in place across the network, including at the Kazhakkoottam centre.',
+          },
+        ].map(({ badge, title, body }) => (
+          <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-sm flex gap-6 items-start">
+            <div class="w-16 h-16 bg-brand-700 text-white rounded-xl flex items-center justify-center font-bold text-xs text-center leading-tight shrink-0">{badge}</div>
+            <div>
+              <h2 class="font-display text-xl font-bold text-gray-900 mb-2">{title}</h2>
+              <p class="text-gray-600 text-sm leading-relaxed">{body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-10">
+        <h2 class="font-display text-2xl font-bold text-gray-900 mb-4">Other IMTTI Affiliations</h2>
+        <ul class="grid sm:grid-cols-2 gap-2.5">
+          {brand.accreditations.map((acc) => (
+            <li class="flex items-start gap-2.5 text-sm text-gray-700">
+              <svg class="w-4 h-4 text-brand-700 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+              {acc}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="mt-12">
+        <h2 class="font-display text-2xl font-bold text-gray-900 mb-6">FAQ</h2>
+        <dl class="space-y-3">
+          {faqSchema.mainEntity.map((faq) => (
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+              <dt>
+                <button class="w-full flex items-center justify-between px-5 py-4 text-left font-semibold text-sm text-gray-900 hover:bg-gray-50 faq-toggle" aria-expanded="false">
+                  <span>{faq.name}</span>
+                  <svg class="w-4 h-4 text-gray-400 shrink-0 faq-icon transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+              </dt>
+              <dd class="hidden px-5 pb-4 text-sm text-gray-600 leading-relaxed faq-answer">{faq.acceptedAnswer.text}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+  <WhatsAppButton />
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.faq-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      btn.closest('div')?.querySelector('.faq-answer')?.classList.toggle('hidden');
+      btn.querySelector('.faq-icon')?.classList.toggle('rotate-180');
+    });
+  });
+</script>

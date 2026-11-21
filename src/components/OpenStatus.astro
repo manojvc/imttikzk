@@ -1,0 +1,24 @@
+---
+import facts from '@data/facts.json';
+
+// Compute server-side open/closed using IST (UTC+5:30)
+const now = new Date();
+const ist = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+const day = ist.getDay(); // 0=Sun, 6=Sat
+const mins = ist.getHours() * 60 + ist.getMinutes();
+
+let isOpen = false;
+if (day >= 1 && day <= 5) {
+  isOpen = mins >= 9 * 60 && mins < 18 * 60;
+} else if (day === 6) {
+  isOpen = mins >= 9 * 60 && mins < 13 * 60;
+}
+
+const label = isOpen ? 'Open now' : 'Closed';
+const dot   = isOpen ? 'bg-green-500' : 'bg-gray-400';
+---
+
+<span class="inline-flex items-center gap-1.5 text-sm font-medium">
+  <span class={`w-2 h-2 rounded-full ${dot}`}></span>
+  <span class={isOpen ? 'text-green-700' : 'text-gray-500'}>{label}</span>
+</span>

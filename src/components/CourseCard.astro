@@ -1,0 +1,48 @@
+---
+interface Props {
+  id: string;
+  slug: string;
+  name: string;
+  shortName: string;
+  duration: string;
+  eligibility: string;
+  highlight: string;
+  modes: string[];
+  featured?: boolean;
+}
+
+const { slug, name, shortName, duration, eligibility, highlight, modes, featured = false } = Astro.props;
+---
+
+<article class={`relative rounded-2xl border ${featured ? 'border-brand-600 shadow-lg ring-1 ring-brand-600' : 'border-gray-200 shadow-sm'} bg-white overflow-hidden flex flex-col`}>
+  {featured && (
+    <div class="bg-brand-700 text-white text-xs font-semibold text-center py-1.5 tracking-wider uppercase">
+      Most Popular
+    </div>
+  )}
+  <div class="p-6 flex flex-col flex-1">
+    <div class="mb-1 flex items-center gap-2 flex-wrap">
+      <span class="text-xs font-semibold uppercase tracking-wider text-brand-700 bg-brand-50 px-2 py-0.5 rounded-full">
+        {duration}
+      </span>
+      {modes.map((m) => (
+        <span class="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full capitalize">{m}</span>
+      ))}
+    </div>
+    <h3 class="font-display font-bold text-gray-900 text-lg leading-snug mt-2 mb-3">{shortName}</h3>
+    <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-1">{highlight}</p>
+    <div class="text-sm text-gray-500 mb-5">
+      <span class="font-medium text-gray-700">Eligibility:</span> {eligibility}
+    </div>
+    <a
+      href={`/courses/${slug}/`}
+      class={`block w-full text-center py-2.5 rounded-xl font-semibold text-sm transition-colors ${
+        featured
+          ? 'bg-brand-700 text-white hover:bg-brand-800'
+          : 'border border-brand-700 text-brand-700 hover:bg-brand-50'
+      }`}
+    >
+      View Course Details
+    </a>
+  </div>
+</article>

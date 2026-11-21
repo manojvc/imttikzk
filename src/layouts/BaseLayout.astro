@@ -1,0 +1,185 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  schema?: object | object[];
+  lang?: 'en' | 'ml';
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/images/hero-classroom.jpg',
+  schema,
+  lang = 'en',
+  noindex = false,
+} = Astro.props;
+
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl   = new URL(ogImage, Astro.site).href;
+const schemaArray  = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+---
+
+<!doctype html>
+<html lang={lang === 'ml' ? 'ml-IN' : 'en-IN'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en-IN" href={new URL(Astro.url.pathname.replace(/^\/ml/, ''), Astro.site).href} />
+    <link rel="alternate" hreflang="ml-IN" href={new URL('/ml' + Astro.url.pathname.replace(/^\/ml/, ''), Astro.site).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(/^\/ml/, ''), Astro.site).href} />
+
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonicalUrl} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={ogImageUrl} />
+    <meta property="og:locale"      content={lang === 'ml' ? 'ml_IN' : 'en_IN'} />
+    <meta property="og:site_name"   content="IMTTI Kazhakkoottam" />
+
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={ogImageUrl} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+
+    <link rel="icon"             type="image/png" href="/images/imtti-logo-official.png" />
+    <link rel="apple-touch-icon"                  href="/images/imtti-logo-official.png" />
+
+    {schemaArray.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+
+    <!-- GA4 – replace G-XXXXXXXXXX -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <style>
+      /* ── Scroll reveal ── */
+      .reveal,.reveal-left,.reveal-right {
+        opacity: 0;
+        transition: opacity 0.65s ease, transform 0.65s ease;
+      }
+      .reveal       { transform: translateY(28px); }
+      .reveal-left  { transform: translateX(-28px); }
+      .reveal-right { transform: translateX(28px); }
+      .reveal.visible,.reveal-left.visible,.reveal-right.visible {
+        opacity: 1; transform: none;
+      }
+
+      /* stagger children */
+      .stagger > * {
+        opacity: 0; transform: translateY(22px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .stagger.visible > *:nth-child(1){opacity:1;transform:none;transition-delay:0s}
+      .stagger.visible > *:nth-child(2){opacity:1;transform:none;transition-delay:.1s}
+      .stagger.visible > *:nth-child(3){opacity:1;transform:none;transition-delay:.2s}
+      .stagger.visible > *:nth-child(4){opacity:1;transform:none;transition-delay:.3s}
+      .stagger.visible > *:nth-child(5){opacity:1;transform:none;transition-delay:.4s}
+      .stagger.visible > *:nth-child(6){opacity:1;transform:none;transition-delay:.5s}
+
+      /* ── Gold accent underline ── */
+      .gold-line {
+        position: relative; display: inline-block;
+      }
+      .gold-line::after {
+        content: ''; position: absolute;
+        left: 0; bottom: -5px;
+        height: 3px; width: 0;
+        background: #ffd700; border-radius: 2px;
+        transition: width 0.5s ease;
+      }
+      .gold-line.visible::after { width: 100%; }
+
+      /* ── Parallax hero ── */
+      .hero-parallax {
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center top;
+      }
+      @media (max-width: 768px) {
+        .hero-parallax { background-attachment: scroll; }
+      }
+
+      /* ── Card hover lift ── */
+      .card-lift {
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .card-lift:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 24px 48px rgba(27,40,120,0.13);
+      }
+
+      /* ── Image zoom on hover ── */
+      .img-zoom { overflow: hidden; border-radius: inherit; }
+      .img-zoom img { transition: transform 0.55s ease; display: block; width: 100%; height: 100%; object-fit: cover; }
+      .img-zoom:hover img { transform: scale(1.07); }
+
+      /* ── Stat counter shimmer ── */
+      @keyframes shimmer {
+        0%   { background-position: -200% center; }
+        100% { background-position:  200% center; }
+      }
+      .shimmer-gold {
+        background: linear-gradient(90deg, #ffd700, #fff59d, #c4961a, #ffd700);
+        background-size: 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 3s linear infinite;
+      }
+
+      /* ── WhatsApp FAB pulse ── */
+      .wa-pulse { animation: pulseWa 2.2s ease-in-out infinite; }
+      @keyframes pulseWa {
+        0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+        70%      { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
+      }
+
+      /* ── Floating elements ── */
+      .float-a { animation: floatA 4s ease-in-out infinite; }
+      .float-b { animation: floatA 5.5s ease-in-out 0.8s infinite; }
+      .float-c { animation: floatA 3.8s ease-in-out 1.6s infinite; }
+      @keyframes floatA {
+        0%,100% { transform: translateY(0); }
+        50%      { transform: translateY(-14px); }
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-900 font-sans antialiased">
+    <slot name="header" />
+    <main><slot /></main>
+    <slot name="footer" />
+
+    <script>
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        }),
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger,.gold-line')
+        .forEach(el => io.observe(el));
+    </script>
+  </body>
+</html>

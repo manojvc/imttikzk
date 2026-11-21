@@ -1,0 +1,74 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import WhatsAppButton from '@components/WhatsAppButton.astro';
+import BatchBanner from '@components/BatchBanner.astro';
+import CourseCard from '@components/CourseCard.astro';
+import facts from '@data/facts.json';
+
+const { courses, centre } = facts;
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://imttikzk.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Courses', item: 'https://imttikzk.com/courses/' },
+  ],
+};
+---
+
+<BaseLayout
+  title="Montessori Courses in Kazhakkoottam | IMTTI"
+  description="Choose from three Montessori teacher training courses at IMTTI Kazhakkoottam – PG Diploma (1 year), PG Diploma (6-month crash course), and Diploma (6 months). Offline & online, IAO-USA certified."
+  schema={breadcrumb}
+>
+  <BatchBanner slot="header" />
+  <Header slot="header" />
+
+  <section class="py-14 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center gap-2">
+          <li><a href="/" class="hover:text-brand-700">Home</a></li>
+          <li>›</li>
+          <li class="text-gray-900 font-medium">Courses</li>
+        </ol>
+      </nav>
+      <div class="text-center mb-12">
+        <h1 class="font-display text-4xl font-bold text-gray-900 mb-4">Montessori Teacher Training Courses</h1>
+        <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+          IMTTI Kazhakkoottam offers three Montessori teaching practice courses suited to different educational backgrounds and career goals. All courses are internationally certified (IAO-USA + UK CACHE Level 3) with embassy attestation available.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {courses.map((c, i) => (
+          <CourseCard {...c} featured={i === 0} />
+        ))}
+      </div>
+      <div class="mt-10 text-center">
+        <a href="/compare-courses/" class="inline-flex items-center gap-2 px-6 py-3 border border-brand-700 text-brand-700 font-semibold rounded-xl hover:bg-brand-50 transition-colors">
+          Compare courses side by side
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-2xl font-bold text-gray-900 mb-6">Which Course is Right for You?</h2>
+      <div class="prose prose-gray max-w-none">
+        <ul>
+          <li><strong>PG Diploma – 1 Year:</strong> Best for those who want the deepest Montessori grounding – 8 theory papers, all 40 apparatus, 5 chart/album works. Ideal if you're serious about a career in Montessori education or running your own school.</li>
+          <li><strong>PG Diploma – 6 Months:</strong> Same PG Diploma credential in half the time. Suited for degree holders who need to re-enter the workforce quickly.</li>
+          <li><strong>Diploma – 6 Months:</strong> Entry-level qualification open from 10th pass. A strong foundation with 20 apparatus, ideal as a first step or for homemakers considering teaching.</li>
+        </ul>
+        <p>All courses come with the same certifications (IAO-USA + CACHE Level 3), embassy attestation, and placement assistance. <a href="/compare-courses/">See the full comparison →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+  <WhatsAppButton />
+</BaseLayout>

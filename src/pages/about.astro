@@ -1,0 +1,72 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import WhatsAppButton from '@components/WhatsAppButton.astro';
+import BatchBanner from '@components/BatchBanner.astro';
+import facts from '@data/facts.json';
+
+const { centre, brand } = facts;
+---
+
+<BaseLayout
+  title="About IMTTI Kazhakkoottam – Montessori Teacher Training Centre"
+  description="IMTTI Kazhakkoottam is an authorised centre of IMTTI (est. 2004), offering Montessori teacher training near Technopark, Trivandrum. ISO 9001:2018, IAO-USA accredited."
+>
+  <BatchBanner slot="header" />
+  <Header slot="header" />
+
+  <section class="py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-display text-4xl font-bold text-gray-900 mb-4 text-center">About IMTTI Kazhakkoottam</h1>
+      <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+        An authorised centre of the IMTTI national network, bringing internationally recognised Montessori teacher training to Kazhakkoottam, Thiruvananthapuram.
+      </p>
+
+      <div class="prose prose-gray max-w-none">
+        <h2>Who We Are</h2>
+        <p>
+          IMTTI Kazhakkoottam (International Montessori Teacher Training Institute) is located at ASRA 118, Attinkuzhy Road, Kazhakkoottam, Thiruvananthapuram – close to Technopark and convenient for residents of Kaniyapuram, Sreekaryam, Kulathoor, Pothencode, Attingal, and greater Trivandrum.
+        </p>
+        <p>
+          We are part of the IMTTI national network, headquartered at Kolar Gold Fields, Karnataka, with centres across India including Thrissur and Kodungallur in Kerala. The national institution has been training Montessori teachers since {brand.established} and is {brand.iso} certified.
+        </p>
+
+        <h2>Our Mission</h2>
+        <p>
+          IMTTI's mission is to spread quality early childhood education and the Montessori philosophy worldwide, and to instil the Montessori spirit in every teacher we train. At Kazhakkoottam, we bring this mission to Trivandrum with a convenient batch structure designed for homemakers, working professionals, and career re-starters.
+        </p>
+
+        <blockquote>
+          <p>"{brand.quote}"</p>
+          <footer>— {brand.quoteAuthor}</footer>
+        </blockquote>
+
+        <h2>Accreditations & Affiliations</h2>
+        <p>Through the IMTTI national brand, our courses carry the following recognitions:</p>
+        <ul>
+          {brand.accreditations.map((acc) => (
+            <li>{acc}</li>
+          ))}
+        </ul>
+
+        <h2>What Makes Kazhakkoottam Centre Distinct</h2>
+        <ul>
+          <li><strong>Convenient batch timing:</strong> {centre.currentBatch.classTime} – designed for homemakers who can attend after the morning school-drop routine.</li>
+          <li><strong>Offline and online:</strong> attend at the centre or join live online; same syllabus, same certification.</li>
+          <li><strong>Near Technopark:</strong> easy access for Technopark employees and residents of the surrounding belt.</li>
+          <li><strong>Gulf-ready credentials:</strong> IAO-USA, UK CACHE Level 3, and embassy attestation support – in-demand for Montessori jobs in the UAE, Qatar, and Bahrain.</li>
+          <li><strong>Unlimited practical hours:</strong> open access to the apparatus room, not just scheduled slots.</li>
+        </ul>
+
+        <h2>Parent Organisation</h2>
+        <p>
+          IMTTI (International Montessori Teacher Training Institute) – <a href={brand.website} target="_blank" rel="noopener noreferrer">{brand.website}</a>. The national HQ sets the syllabus, examination system, and certification standards. Kazhakkoottam is an authorised study centre. When you complete your course here, your certificate is issued by IMTTI (the national body).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+  <WhatsAppButton />
+</BaseLayout>

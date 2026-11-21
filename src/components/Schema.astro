@@ -1,0 +1,99 @@
+---
+import facts from '@data/facts.json';
+
+const { centre, brand, courses } = facts;
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['EducationalOrganization', 'LocalBusiness'],
+  '@id': 'https://imttikzk.com/#organization',
+  name: centre.fullName,
+  alternateName: 'IMTTI Kazhakkoottam',
+  url: centre.website,
+  email: centre.email,
+  telephone: [centre.phones.whatsapp, centre.phones.calls],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: centre.address.streetAddress,
+    addressLocality: centre.address.addressLocality,
+    addressRegion: centre.address.addressRegion,
+    postalCode: centre.address.postalCode,
+    addressCountry: centre.address.addressCountry,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: centre.hours.monFri.opens,
+      closes: centre.hours.monFri.closes,
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Saturday'],
+      opens: centre.hours.sat.opens,
+      closes: centre.hours.sat.closes,
+    },
+  ],
+  parentOrganization: {
+    '@type': 'Organization',
+    '@id': 'https://imtti.org/#organization',
+    name: brand.name,
+    url: brand.website,
+  },
+  sameAs: [],
+};
+
+function buildCourseSchema(course: typeof courses[0]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    '@id': `https://imttikzk.com/courses/${course.slug}/#course`,
+    name: course.name,
+    description: course.highlight,
+    provider: { '@id': 'https://imttikzk.com/#organization' },
+    educationalCredentialAwarded: course.credential,
+    coursePrerequisites: course.eligibility,
+    hasCourseInstance: course.modes.map((mode) => ({
+      '@type': 'CourseInstance',
+      courseMode: mode === 'offline' ? 'onsite' : 'online',
+      startDate: centre.currentBatch.startDate,
+      courseSchedule: {
+        '@type': 'Schedule',
+        startTime: '10:30',
+        endTime: '12:30',
+      },
+      location: mode === 'offline' ? { '@id': 'https://imttikzk.com/#organization' } : undefined,
+    })),
+  };
+}
+
+const batchEventSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: `IMTTI Kazhakkoottam – Montessori Course Batch Starting ${centre.currentBatch.startDisplay}`,
+  startDate: centre.currentBatch.startDate,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
+  location: {
+    '@type': 'Place',
+    name: centre.fullName,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: centre.address.streetAddress,
+      addressLocality: centre.address.addressLocality,
+      addressRegion: centre.address.addressRegion,
+      postalCode: centre.address.postalCode,
+      addressCountry: centre.address.addressCountry,
+    },
+  },
+  organizer: { '@id': 'https://imttikzk.com/#organization' },
+  url: 'https://imttikzk.com/batches/',
+};
+---
+
+<!-- Organisation schema: rendered on every page via BaseLayout slot -->
+<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(batchEventSchema)} />
+{courses.map((c) => (
+  <script type="application/ld+json" set:html={JSON.stringify(buildCourseSchema(c))} />
+))}

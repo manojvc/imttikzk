@@ -1,0 +1,86 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import WhatsAppButton from '@components/WhatsAppButton.astro';
+import BatchBanner from '@components/BatchBanner.astro';
+import EnquiryForm from '@components/EnquiryForm.astro';
+import facts from '@data/facts.json';
+
+const { centre, courses } = facts;
+---
+
+<BaseLayout
+  title="മോണ്ടിസോറി ടീച്ചർ ട്രെയിനിങ് കഴക്കൂട്ടം | IMTTI"
+  description="IMTTI കഴക്കൂട്ടം – മോണ്ടിസോറി ടീച്ചർ ട്രെയിനിങ് കോഴ്സ് (ഡിപ്ലോമ & പി.ജി ഡിപ്ലോമ). IAO-USA + UK CACHE Level 3 സർട്ടിഫിക്കറ്റ്. അടുത്ത ബാച്ച്: ജനുവരി 2027."
+  lang="ml"
+  canonical="https://imttikzk.com/ml/"
+>
+  <BatchBanner slot="header" />
+  <Header slot="header" />
+
+  <section class="bg-brand-900 text-white py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="font-display text-4xl font-bold mb-6 leading-snug">
+            മോണ്ടിസോറി ടീച്ചർ ട്രെയിനിങ്<br />കഴക്കൂട്ടം, തിരുവനന്തപുരം
+          </h1>
+          <p class="text-brand-100 text-lg leading-relaxed mb-8">
+            IMTTI കഴക്കൂട്ടം – IAO-USA + UK CACHE Level 3 അന്താരാഷ്ട്ര സർട്ടിഫിക്കറ്റോടെ, മൂന്ന് മോണ്ടിസോറി കോഴ്സുകൾ. ഓഫ്‌ലൈൻ &amp; ഓൺലൈൻ. 10:30 am – 12:30 pm ബാച്ച്. ടെക്നോപാർക്കിന് സമീപം.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/admissions/" class="px-6 py-3 bg-white text-brand-800 font-bold rounded-xl hover:bg-gray-100 transition-colors">ജനുവരി 2027 ബാച്ചിന് അപേക്ഷിക്കുക</a>
+            <a href={facts.whatsappCta} target="_blank" rel="noopener noreferrer" class="px-6 py-3 border-2 border-white text-white font-bold rounded-xl hover:bg-white/10 transition-colors">WhatsApp ചെയ്യുക</a>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+          <h2 class="text-white font-semibold text-lg mb-4">കോഴ്സ് വിവരങ്ങൾ ആവശ്യമാണോ?</h2>
+          <EnquiryForm compact={true} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses in Malayalam -->
+  <section class="py-14 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl font-bold text-gray-900 text-center mb-10">ലഭ്യമായ കോഴ്സുകൾ</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {courses.map((c) => (
+          <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+            <div class="text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2 py-0.5 rounded-full inline-block mb-3">{c.duration}</div>
+            <h3 class="font-display font-bold text-gray-900 text-lg mb-2 leading-snug">{c.shortName}</h3>
+            <p class="text-sm text-gray-600 mb-3">യോഗ്യത: {c.eligibility}</p>
+            <a href={`/courses/${c.slug}/`} class="block w-full text-center py-2.5 border border-brand-700 text-brand-700 font-semibold rounded-xl hover:bg-brand-50 transition-colors text-sm">കൂടുതൽ അറിയുക</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Key facts in Malayalam -->
+  <section class="py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-display text-2xl font-bold text-gray-900 mb-8">IMTTI കഴക്കൂട്ടം – ഒരു നോട്ടം</h2>
+      <div class="grid sm:grid-cols-2 gap-4 text-left">
+        {[
+          ['വിലാസം', `${centre.address.streetAddress}, ${centre.address.addressLocality}, ${centre.address.addressRegion} ${centre.address.postalCode}`],
+          ['ഫോൺ / WhatsApp', centre.phones.whatsappDisplay],
+          ['ഇ-മെയിൽ', centre.email],
+          ['പ്രവർത്തി സമയം', centre.hoursDisplay],
+          ['അടുത്ത ബാച്ച്', centre.currentBatch.startDisplay],
+          ['ക്ലാസ് സമയം', centre.currentBatch.classTime],
+        ].map(([label, value]) => (
+          <div class="bg-gray-50 rounded-xl px-4 py-3">
+            <div class="text-xs text-gray-500 font-medium mb-0.5">{label}</div>
+            <div class="text-gray-900 font-semibold text-sm">{value}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+  <WhatsAppButton />
+</BaseLayout>

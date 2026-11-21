@@ -1,0 +1,26 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import WhatsAppButton from '@components/WhatsAppButton.astro';
+import BatchBanner from '@components/BatchBanner.astro';
+---
+
+<BaseLayout
+  title="News & Events | IMTTI Kazhakkoottam"
+  description="Latest news, batch announcements, convocations and events at IMTTI Kazhakkoottam Montessori teacher training centre."
+>
+  <BatchBanner slot="header" />
+  <Header slot="header" />
+
+  <section class="py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-display text-4xl font-bold text-gray-900 mb-4 text-center">News & Events</h1>
+      <p class="text-gray-600 text-center mb-12">Batch launches, convocations, and centre announcements.</p>
+      <p class="text-center text-gray-500">Coming soon – check back for batch news, convocation announcements, and centre events.</p>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+  <WhatsAppButton />
+</BaseLayout>

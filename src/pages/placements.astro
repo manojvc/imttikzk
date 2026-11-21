@@ -1,0 +1,53 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import WhatsAppButton from '@components/WhatsAppButton.astro';
+import BatchBanner from '@components/BatchBanner.astro';
+import facts from '@data/facts.json';
+---
+
+<BaseLayout
+  title="Placements & Career Outcomes | IMTTI Kazhakkoottam"
+  description="IMTTI Kazhakkoottam provides 100% job placement assistance. Graduates teach in Montessori and preschools across India and abroad (Gulf, UK, Europe). Learn about career paths."
+>
+  <BatchBanner slot="header" />
+  <Header slot="header" />
+
+  <section class="py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-display text-4xl font-bold text-gray-900 mb-4 text-center">Placements & Career Outcomes</h1>
+      <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+        Every IMTTI Kazhakkoottam course includes 100% job placement assistance. Here is where IMTTI graduates build careers.
+      </p>
+
+      <div class="grid sm:grid-cols-2 gap-6 mb-14">
+        {[
+          { icon: '🏫', title: 'Montessori Schools – India', body: 'Montessori classrooms in CBSE, ICSE, and State Board schools across Kerala and India actively hire IMTTI-certified teachers.' },
+          { icon: '🌍', title: 'Gulf & International', body: 'UAE, Qatar, Kuwait, Bahrain, and Oman hire IMTTI graduates. The UK CACHE Level 3 + embassy attestation combination meets Gulf school requirements.' },
+          { icon: '🧒', title: 'Kindergarten & Preschools', body: 'Private preschools and kindergartens value the IMTTI practical training (40 apparatus) and certification.' },
+          { icon: '🏡', title: 'Own Preschool', body: 'Many IMTTI graduates use the training as a foundation to start their own Montessori preschool or playschool.' },
+          { icon: '📚', title: 'Child Development Roles', body: 'Curriculum designers, activity coordinators, and child development specialists in education companies.' },
+          { icon: '🤱', title: 'Home Tutoring & Daycare', body: 'Certified Montessori teachers run structured home-based programmes, Montessori play groups, and home daycares.' },
+        ].map(({ icon, title, body }) => (
+          <div class="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+            <div class="text-2xl mb-2">{icon}</div>
+            <h3 class="font-semibold text-gray-900 mb-1">{title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">{body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bg-brand-900 text-white rounded-2xl p-8 text-center">
+        <div class="text-4xl font-display font-bold mb-2">100%</div>
+        <div class="text-brand-100 text-lg font-semibold mb-2">Job Placement Assistance</div>
+        <p class="text-brand-200 text-sm max-w-md mx-auto">
+          IMTTI Kazhakkoottam provides active placement assistance to every graduate. This means referrals to partner schools, resume support, and interview preparation — not a "guaranteed job" claim, but dedicated hands-on help.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+  <WhatsAppButton />
+</BaseLayout>

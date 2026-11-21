@@ -1,0 +1,133 @@
+{
+  "centre": {
+    "name": "IMTTI Kazhakkoottam",
+    "fullName": "IMTTI Kazhakkoottam – International Montessori Teacher Training Institute",
+    "address": {
+      "streetAddress": "ASRA 118, Attinkuzhy Road",
+      "addressLocality": "Kazhakkoottam",
+      "addressRegion": "Kerala",
+      "postalCode": "695301",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "latitude": "{{TBD}}",
+      "longitude": "{{TBD}}"
+    },
+    "phones": {
+      "whatsapp": "+919961170788",
+      "calls": "+919995680078",
+      "whatsappDisplay": "+91 99611 70788",
+      "callsDisplay": "+91 99956 80078"
+    },
+    "email": "imttikzk@gmail.com",
+    "website": "https://imttikzk.com",
+    "hours": {
+      "monFri": { "opens": "09:00", "closes": "18:00" },
+      "sat":    { "opens": "09:00", "closes": "13:00" },
+      "sun":    "closed"
+    },
+    "hoursDisplay": "Mon–Fri 9:00 am – 6:00 pm · Sat 9:00 am – 1:00 pm · Sun Closed",
+    "currentBatch": {
+      "startDate": "2027-01-06",
+      "startDisplay": "6 January 2027",
+      "classTime": "10:30 am – 12:30 pm",
+      "modes": ["offline", "online"]
+    },
+    "social": {
+      "instagram": "{{TBD}}",
+      "facebook": "{{TBD}}",
+      "youtube": "{{TBD}}",
+      "linkedin": "{{TBD}}",
+      "whatsappChannel": "{{TBD}}"
+    },
+    "gbpUrl": "{{TBD}}",
+    "mapsUrl": "{{TBD}}"
+  },
+  "brand": {
+    "name": "IMTTI – International Montessori Teacher Training Institute",
+    "website": "https://imtti.org",
+    "established": 2004,
+    "hq": "Kolar Gold Fields, Karnataka",
+    "iso": "ISO 9001:2018",
+    "accreditations": [
+      "International Accreditation Organization (IAO), USA",
+      "AIAER – All India Association for Educational Research",
+      "AICE – All India Council of Education",
+      "ISTD – Indian Society for Training & Development",
+      "AECED – Association for Early Childhood Education & Development",
+      "Bharat Sevak Samaj",
+      "United Montessori Association (UMA)",
+      "International Montessori Council (IMC)",
+      "Pacific Northwest Montessori Association (PNMA)"
+    ],
+    "quote": "The child is both a hope and a promise for mankind",
+    "quoteAuthor": "Maria Montessori"
+  },
+  "courses": [
+    {
+      "id": "pg-diploma-montessori",
+      "slug": "pg-diploma-montessori",
+      "name": "International PG Diploma in Montessori Teaching Practice",
+      "shortName": "PG Diploma (1 Year)",
+      "duration": "1 year",
+      "eligibility": "Plus Two / Degree / Masters",
+      "syllabus": {
+        "theoryPapers": 8,
+        "apparatus": 40,
+        "chartAlbumWorks": 5,
+        "teachingPractice": "1 month"
+      },
+      "credential": "International PG Diploma in Montessori Teaching Practice",
+      "modes": ["offline", "online"],
+      "highlight": "Most comprehensive – 8 theory papers + 40 apparatus + 5 chart & album works"
+    },
+    {
+      "id": "pg-diploma-montessori-6-month",
+      "slug": "pg-diploma-montessori-6-month",
+      "name": "International PG Diploma in Montessori Teaching Practice – 6-Month Crash Course",
+      "shortName": "PG Diploma (6 Months)",
+      "duration": "6 months",
+      "eligibility": "Plus Two / Degree / Masters",
+      "syllabus": {
+        "theoryPapers": 8,
+        "apparatus": 40,
+        "chartAlbumWorks": 2,
+        "teachingPractice": "1 month"
+      },
+      "credential": "International PG Diploma in Montessori Teaching Practice",
+      "modes": ["offline", "online"],
+      "highlight": "Full PG Diploma syllabus in 6 months – ideal for career re-starters"
+    },
+    {
+      "id": "diploma-montessori",
+      "slug": "diploma-montessori",
+      "name": "International Diploma in Montessori Teaching Practice",
+      "shortName": "Diploma (6 Months)",
+      "duration": "6 months",
+      "eligibility": "10th pass / Plus Two / Degree / Masters",
+      "syllabus": {
+        "theoryPapers": 6,
+        "apparatus": 20,
+        "chartAlbumWorks": null,
+        "teachingPractice": "1 month"
+      },
+      "credential": "International Diploma in Montessori Teaching Practice",
+      "modes": ["offline", "online"],
+      "highlight": "Entry-level – open from 10th pass, ideal first step into Montessori"
+    }
+  ],
+  "benefits": [
+    "Unlimited hours of practical training on Montessori apparatus",
+    "International IAO-USA certification",
+    "UK CACHE Level 3 certification",
+    "Embassy attestation for Gulf / international jobs",
+    "Chapter-wise assignments and test papers",
+    "Extra English-language classes",
+    "Interview-skills and presentation training",
+    "Lesson-planning techniques across methodologies",
+    "Internship at a school of your choice",
+    "100% job placement assistance"
+  ],
+  "whatsappCta": "https://wa.me/919961170788?text=I%27d%20like%20details%20of%20the%20Montessori%20course",
+  "enquiryFormEndpoint": "{{TBD-AZURE-FUNCTION-URL}}"
+}
