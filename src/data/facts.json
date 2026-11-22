@@ -41,7 +41,8 @@
       "whatsappChannel": "{{TBD}}"
     },
     "gbpUrl": "{{TBD}}",
-    "mapsUrl": "https://maps.app.goo.gl/bVvYRfiZ6Tx8CHpC7"
+    "mapsUrl": "https://maps.app.goo.gl/bVvYRfiZ6Tx8CHpC7",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3945.491854712893!2d76.87358411059188!3d8.54861039145931!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bf4034679625%3A0x55211763bee4f0a!2sInternational%20Montessori%20Teacher%20Training%20Institute%20Kazhakkootttam!5e0!3m2!1sen!2sin!4v1795324146620!5m2!1sen!2sin"
   },
   "brand": {
     "name": "IMTTI – International Montessori Teacher Training Institute",
