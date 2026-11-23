@@ -22,4 +22,4 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-Sitemap: https://imttikzk.com/sitemap-index.xml
+Sitemap: https://imttikzk.com/sitemap.xml
