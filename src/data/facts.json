@@ -28,8 +28,6 @@
     },
     "hoursDisplay": "Mon–Fri 9:00 am – 6:00 pm · Sat 9:00 am – 1:00 pm · Sun Closed",
     "currentBatch": {
-      "startDate": "2027-01-06",
-      "startDisplay": "6 January 2027",
       "classTime": "10:30 am – 12:30 pm",
       "modes": ["offline", "online"]
     },
@@ -80,7 +78,7 @@
       },
       "credential": "International PG Diploma in Montessori Teaching Practice",
       "modes": ["offline", "online"],
-      "highlight": "Most comprehensive – 8 theory papers + 40 apparatus + 5 chart & album works"
+      "highlight": "Deepest training – 8 theory papers, 40 apparatus & 5 chart & album works"
     },
     {
       "id": "pg-diploma-montessori-6-month",

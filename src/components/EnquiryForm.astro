@@ -75,6 +75,9 @@ const endpoint = facts.enquiryFormEndpoint;
     </div>
   </div>
 
+  <!-- honeypot: hidden from humans, traps bots -->
+  <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
   <div id="ef-error" class="hidden text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2.5" role="alert"></div>
   <div id="ef-success" class="hidden text-sm text-green-700 bg-green-50 border border-green-200 rounded-lg px-3 py-2.5" role="status">
     Thank you! We'll reach out to you shortly on WhatsApp/phone.
@@ -104,6 +107,9 @@ const endpoint = facts.enquiryFormEndpoint;
       errorEl.classList.add('hidden');
       successEl.classList.add('hidden');
 
+      // Honeypot check
+      if ((form.querySelector('[name="_honeypot"]') as HTMLInputElement)?.value) return;
+
       const phone = (form.querySelector('#ef-phone') as HTMLInputElement).value;
       if (!/^[6-9][0-9]{9}$/.test(phone.replace(/\s/g, ''))) {
         errorEl.textContent = 'Please enter a valid 10-digit Indian mobile number.';
@@ -113,10 +119,11 @@ const endpoint = facts.enquiryFormEndpoint;
 
       const endpoint = form.dataset.endpoint ?? '';
       if (!endpoint || endpoint.startsWith('{{')) {
-        // Dev fallback: log and show success
         console.log('Form data:', Object.fromEntries(new FormData(form)));
         successEl.classList.remove('hidden');
         form.reset();
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'form_submit', form_id: 'enquiry' });
         return;
       }
 
@@ -131,8 +138,8 @@ const endpoint = facts.enquiryFormEndpoint;
         if (!res.ok) throw new Error('Server error');
         successEl.classList.remove('hidden');
         form.reset();
-        // GA4 conversion event
-        if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { event_category: 'enquiry_form' });
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'form_submit', form_id: 'enquiry' });
       } catch {
         errorEl.textContent = 'Something went wrong. Please try WhatsApp or call us directly.';
         errorEl.classList.remove('hidden');

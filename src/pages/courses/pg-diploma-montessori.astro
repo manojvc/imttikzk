@@ -17,7 +17,7 @@ const faqSchema = {
     { '@type': 'Question', name: 'What is the eligibility for the PG Diploma in Montessori?', acceptedAnswer: { '@type': 'Answer', text: 'Candidates must have passed Plus Two (12th), Degree, or Masters. There is no upper age limit.' } },
     { '@type': 'Question', name: 'What certifications do I get after the PG Diploma?', acceptedAnswer: { '@type': 'Answer', text: 'You receive an international certification from IAO-USA (International Accreditation Organization) and UK CACHE Level 3 certification. Embassy attestation is available for Gulf employment.' } },
     { '@type': 'Question', name: 'How many Montessori apparatus are covered in the 1-year PG Diploma?', acceptedAnswer: { '@type': 'Answer', text: 'The 1-year PG Diploma covers all 40 wooden Montessori apparatus with unlimited practical training hours, 8 theory papers, and 5 chart & album works.' } },
-    { '@type': 'Question', name: 'Is the PG Diploma in Montessori valid for Gulf jobs?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The IAO-USA and UK CACHE Level 3 certifications, combined with embassy attestation, are recognised by schools and employers in the Gulf region including UAE, Qatar, Kuwait, and Bahrain.' } },
+    { '@type': 'Question', name: 'Is the PG Diploma in Montessori valid for Gulf jobs?', acceptedAnswer: { '@type': 'Answer', text: 'The IAO-USA and UK CACHE Level 3 certifications, combined with embassy attestation, are accepted for Montessori roles in the Gulf region including UAE, Qatar, Kuwait, and Bahrain. Confirm current requirements with IMTTI before applying for overseas roles.' } },
   ],
 };
 
@@ -43,7 +43,7 @@ const breadcrumb = {
   <!-- Hero -->
   <section class="relative bg-brand-900 text-white overflow-hidden">
     <div class="absolute inset-0">
-      <img src="/images/montessori-materials.jpg" alt="" class="w-full h-full object-cover opacity-20" />
+      <img src="/images/montessori-materials.jpg" alt="Montessori teaching materials" class="w-full h-full object-cover opacity-20" />
       <div class="absolute inset-0 bg-gradient-to-r from-brand-950/95 to-brand-900/80"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -62,7 +62,7 @@ const breadcrumb = {
         </div>
         <h1 class="font-display text-3xl sm:text-4xl font-bold mb-4">{course.name}</h1>
         <p class="text-brand-100 text-lg leading-relaxed mb-6">
-          The most comprehensive Montessori teacher training programme at IMTTI Kazhakkoottam – covering 8 theory papers, all 40 Montessori apparatus with unlimited practical hours, 5 chart &amp; album works, and 1 month teaching practice. Leads to IAO-USA + UK CACHE Level 3 certification with embassy attestation.
+          The 1-year Montessori teacher training programme at IMTTI Kazhakkoottam – covering 8 theory papers, all 40 Montessori apparatus with unlimited practical hours, 5 chart &amp; album works, and 1 month teaching practice. Leads to IAO-USA + UK CACHE Level 3 certification with embassy attestation.
         </p>
         <div class="flex flex-wrap gap-3">
           <a href={facts.whatsappCta} target="_blank" rel="noopener noreferrer"
@@ -109,7 +109,7 @@ const breadcrumb = {
           <ul class="space-y-3 text-gray-700 text-sm leading-relaxed mt-6">
             {[
               'Degree or Plus Two holders who want the deepest possible Montessori expertise.',
-              'Teachers who want to work in top Montessori schools in India or internationally.',
+              'Teachers who want to work in Montessori schools in India or internationally.',
               'Aspiring preschool owners / directors who need a full theoretical and practical foundation.',
               'Gulf-bound professionals who need CACHE Level 3 + embassy attestation.',
               'Homemakers re-entering the workforce who can attend the convenient 10:30 am – 12:30 pm batch.',
@@ -135,7 +135,7 @@ const breadcrumb = {
               { title: '8 Theory Papers', body: 'Philosophy of Montessori, child development, language, mathematics, sensorial, cultural studies, classroom management, and assessment.' },
               { title: '40 Montessori Apparatus', body: 'Unlimited practical training on all 40 wooden Montessori materials across Sensorial, Language, Mathematics, and Cultural areas.' },
               { title: '5 Chart & Album Works', body: 'Detailed preparation of Montessori teaching charts and lesson albums for each subject area.' },
-              { title: '1-Month Teaching Practice', body: 'Supervised classroom internship at a Montessori school of your choice near your location.' },
+              { title: '1-Month Teaching Practice', body: 'Supervised classroom internship at a Montessori school of your choice near your location. Online students arrange their teaching practice locally — contact IMTTI for guidance on how this works for your area. (TODO: confirm the exact process with IMTTI for online students.)' },
             ].map(({ title, body }) => (
               <div class="bg-white border border-brand-100 rounded-xl p-5 shadow-sm card-lift">
                 <div class="w-8 h-1 bg-gold-500 rounded mb-3"></div>
