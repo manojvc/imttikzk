@@ -76,6 +76,12 @@
         "chartAlbumWorks": 5,
         "teachingPractice": "1 month"
       },
+      "certifications": {
+        "iaoUsa": true,
+        "cacheLevel3": true,
+        "imac": true,
+        "embassyAttestation": true
+      },
       "credential": "International PG Diploma in Montessori Teaching Practice",
       "modes": ["offline", "online"],
       "highlight": "Deepest training – 8 theory papers, 40 apparatus & 5 chart & album works"
@@ -93,6 +99,12 @@
         "chartAlbumWorks": 2,
         "teachingPractice": "1 month"
       },
+      "certifications": {
+        "iaoUsa": true,
+        "cacheLevel3": true,
+        "imac": true,
+        "embassyAttestation": true
+      },
       "credential": "International PG Diploma in Montessori Teaching Practice",
       "modes": ["offline", "online"],
       "highlight": "Full PG Diploma syllabus in 6 months – ideal for career re-starters"
@@ -107,8 +119,14 @@
       "syllabus": {
         "theoryPapers": 6,
         "apparatus": 20,
-        "chartAlbumWorks": null,
+        "chartAlbumWorks": 1,
         "teachingPractice": "1 month"
+      },
+      "certifications": {
+        "iaoUsa": true,
+        "cacheLevel3": true,
+        "imac": true,
+        "embassyAttestation": true
       },
       "credential": "International Diploma in Montessori Teaching Practice",
       "modes": ["offline", "online"],
@@ -119,6 +137,7 @@
     "Unlimited hours of practical training on Montessori apparatus",
     "International IAO-USA certification",
     "UK CACHE Level 3 certification",
+    "iMAC (International Montessori Accreditation Commission) accreditation",
     "Embassy attestation for Gulf / international jobs",
     "Chapter-wise assignments and test papers",
     "Extra English-language classes",
@@ -127,6 +146,13 @@
     "Internship at a school of your choice",
     "100% job placement assistance"
   ],
+  "imac": {
+    "name": "International Montessori Accreditation Commission (iMAC)",
+    "shortName": "iMAC",
+    "url": "https://www.imacedu.org/",
+    "tagline": "Global Standards. Montessori Excellence.",
+    "description": "iMAC is an international quality accreditation body for Montessori teacher training institutions. iMAC-accredited certificates validate that courses meet established international Montessori standards."
+  },
   "whatsappCta": "https://wa.me/919961170788?text=I%27d%20like%20details%20of%20the%20Montessori%20course",
   "enquiryFormEndpoint": "{{TBD-AZURE-FUNCTION-URL}}"
 }

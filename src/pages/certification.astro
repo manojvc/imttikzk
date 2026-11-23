@@ -6,13 +6,14 @@ import WhatsAppButton from '@components/WhatsAppButton.astro';
 import BatchBanner from '@components/BatchBanner.astro';
 import facts from '@data/facts.json';
 
-const { brand } = facts;
+const { brand, imac } = facts;
 
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: [
-    { '@type': 'Question', name: 'What is CACHE Level 3 and is it valid in the Gulf?', acceptedAnswer: { '@type': 'Answer', text: 'CACHE (Council for Awards in Care, Health and Education) is a UK awarding body. Level 3 in Childcare and Education is widely recognised by schools and nurseries in the Gulf (UAE, Qatar, Kuwait, Bahrain) as a professional early-years qualification. Combined with embassy attestation, it qualifies holders to work in Gulf schools.' } },
+    { '@type': 'Question', name: 'What is iMAC accreditation?', acceptedAnswer: { '@type': 'Answer', text: 'iMAC (International Montessori Accreditation Commission) is an international quality accreditation body for Montessori teacher training institutions. iMAC-accredited certificates confirm that the training programme meets established global Montessori standards. All IMTTI courses carry iMAC accreditation.' } },
+    { '@type': 'Question', name: 'What is CACHE Level 3 and is it valid in the Gulf?', acceptedAnswer: { '@type': 'Answer', text: 'CACHE (Council for Awards in Care, Health and Education) is a UK awarding body. Level 3 in Childcare and Education is widely recognised by schools and nurseries in the Gulf (UAE, Qatar, Kuwait, Bahrain) as a professional early-years qualification. Combined with embassy attestation, it qualifies holders to work in Gulf schools. All three IMTTI courses carry UK CACHE Level 3 certification.' } },
     { '@type': 'Question', name: 'What is IAO accreditation?', acceptedAnswer: { '@type': 'Answer', text: 'IAO (International Accreditation Organization), based in the USA, is an independent body that evaluates and accredits educational institutions for quality. IMTTI is IAO accredited, making its certificates internationally recognised.' } },
     { '@type': 'Question', name: 'What is embassy attestation for a Montessori certificate?', acceptedAnswer: { '@type': 'Answer', text: 'Embassy attestation is the process of getting your educational certificate verified and stamped by the respective country\'s embassy in India. It is required for employment in Gulf countries and is available for IMTTI Montessori certificates.' } },
   ],
@@ -20,8 +21,8 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Certification – IAO-USA, CACHE Level 3 & Embassy Attestation | IMTTI Kazhakkoottam"
-  description="IMTTI Kazhakkoottam courses carry IAO-USA international certification and UK CACHE Level 3. Embassy attestation available for Gulf employment. Learn what each credential means."
+  title="Certification – IAO-USA, CACHE Level 3, iMAC & Attestation | IMTTI Kazhakkoottam"
+  description="IMTTI Kazhakkoottam courses carry IAO-USA, UK CACHE Level 3 and iMAC accreditation. Embassy attestation available for Gulf employment. Learn what each credential means."
   schema={faqSchema}
 >
   <BatchBanner slot="header" />
@@ -35,6 +36,17 @@ const faqSchema = {
       </p>
 
       <div class="space-y-8">
+        <!-- iMAC – featured with logo -->
+        <div class="bg-white border-2 border-brand-200 rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row gap-6 items-start">
+          <img src="/images/imac-emblem.png" alt="iMAC – International Montessori Accreditation Commission" class="h-20 w-auto object-contain shrink-0" loading="lazy" />
+          <div>
+            <h2 class="font-display text-xl font-bold text-gray-900 mb-1">{imac.name}</h2>
+            <p class="text-brand-600 text-xs font-semibold mb-2 uppercase tracking-wider">{imac.tagline}</p>
+            <p class="text-gray-600 text-sm leading-relaxed mb-2">{imac.description}</p>
+            <a href={imac.url} target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:text-gold-700 text-sm font-medium underline underline-offset-2">Visit imacedu.org ↗</a>
+          </div>
+        </div>
+
         {[
           {
             badge: 'IAO-USA',
@@ -44,7 +56,7 @@ const faqSchema = {
           {
             badge: 'CACHE L3',
             title: 'UK CACHE Level 3 Certification',
-            body: 'CACHE (Council for Awards in Care, Health and Education) is a leading UK awarding body for early-years professionals. A CACHE Level 3 in Childcare and Education is a standard requirement for Montessori and nursery teaching positions in the Gulf (UAE, Qatar, Kuwait, Bahrain). It is awarded with the PG Diploma courses at IMTTI.',
+            body: 'CACHE (Council for Awards in Care, Health and Education) is a leading UK awarding body for early-years professionals. A CACHE Level 3 in Childcare and Education is widely recognised for Montessori and nursery teaching positions in the Gulf (UAE, Qatar, Kuwait, Bahrain). All three IMTTI courses carry UK CACHE Level 3 certification.',
           },
           {
             badge: 'Attestation',

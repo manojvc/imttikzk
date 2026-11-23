@@ -6,13 +6,13 @@ import WhatsAppButton from '@components/WhatsAppButton.astro';
 import BatchBanner from '@components/BatchBanner.astro';
 import facts from '@data/facts.json';
 
-const { courses, centre } = facts;
+const { courses, centre, imac } = facts;
 
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: [
-    { '@type': 'Question', name: 'What is the difference between Diploma and PG Diploma in Montessori?', acceptedAnswer: { '@type': 'Answer', text: 'The Diploma (6 months) is open from 10th pass and covers 6 theory papers and 20 apparatus. The PG Diploma (1 year or 6-month crash) requires Plus Two or Degree, covers 8 theory papers and 40 apparatus, and additionally includes UK CACHE Level 3 certification.' } },
+    { '@type': 'Question', name: 'What is the difference between Diploma and PG Diploma in Montessori?', acceptedAnswer: { '@type': 'Answer', text: 'The Diploma (6 months) is open from 10th pass and covers 6 theory papers and 20 Montessori apparatus. The PG Diploma (1 year or 6-month crash) requires Plus Two or Degree and covers 8 theory papers and 40 apparatus. All three courses carry IAO-USA, UK CACHE Level 3, and iMAC accreditation.' } },
     { '@type': 'Question', name: 'Which Montessori course is best for Gulf jobs?', acceptedAnswer: { '@type': 'Answer', text: 'The PG Diploma (1 year or 6-month crash course) is recommended for Gulf employment. It includes UK CACHE Level 3 certification which is widely recognised in the Gulf, plus embassy attestation.' } },
     { '@type': 'Question', name: 'Should I choose the 1-year or 6-month PG Diploma in Montessori?', acceptedAnswer: { '@type': 'Answer', text: 'Both lead to the same PG Diploma credential. Choose the 1-year if you want a thorough pace with 5 chart & album works. Choose the 6-month crash course if you need to qualify faster and are comfortable with an intensive schedule.' } },
   ],
@@ -61,9 +61,10 @@ const faqSchema = {
               ['Apparatus', ...courses.map(c => `${c.syllabus.apparatus}`)],
               ['Chart & album works', ...courses.map(c => c.syllabus.chartAlbumWorks ? `${c.syllabus.chartAlbumWorks}` : '—')],
               ['Teaching practice', ...courses.map(c => c.syllabus.teachingPractice)],
-              ['IAO-USA certification', '✓', '✓', '✓'],
-              ['UK CACHE Level 3', '✓', '✓', '—'],
-              ['Embassy attestation', '✓', '✓', '✓'],
+              ['IAO-USA certification', ...courses.map(c => c.certifications.iaoUsa ? '✓' : '—')],
+              ['UK CACHE Level 3', ...courses.map(c => c.certifications.cacheLevel3 ? '✓' : '—')],
+              ['iMAC Accreditation', ...courses.map(c => c.certifications.imac ? '✓' : '—')],
+              ['Embassy attestation', ...courses.map(c => c.certifications.embassyAttestation ? '✓' : '—')],
               ['Mode', 'Offline & Online', 'Offline & Online', 'Offline & Online'],
             ].map(([label, ...vals], i) => (
               <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
@@ -85,6 +86,15 @@ const faqSchema = {
             </tr>
           </tfoot>
         </table>
+      </div>
+
+      <!-- iMAC notice -->
+      <div class="mt-6 flex flex-col sm:flex-row items-center gap-5 bg-brand-50 border border-brand-200 rounded-2xl px-6 py-5">
+        <img src="/images/imac-emblem.png" alt="iMAC – International Montessori Accreditation Commission" class="h-16 w-auto object-contain shrink-0" loading="lazy" />
+        <div>
+          <div class="font-semibold text-brand-700 text-sm mb-0.5">{imac.name}</div>
+          <p class="text-gray-600 text-sm leading-relaxed">{imac.description} <a href={imac.url} target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:text-gold-700 font-medium underline underline-offset-2">Learn more ↗</a></p>
+        </div>
       </div>
 
       <!-- Recommendation guide -->
