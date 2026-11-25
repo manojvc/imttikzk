@@ -264,14 +264,16 @@ const faqSchema = {
           </p>
           <div class="grid grid-cols-2 gap-4">
             {[
-              { badge: 'IAO-USA', title: 'International Accreditation Org.', sub: 'USA-based independent accreditation' },
-              { badge: 'CACHE L3', title: 'UK CACHE Level 3', sub: 'All courses · Gulf-recognised' },
-              { badge: 'iMAC', title: 'iMAC Accreditation', sub: 'Global Montessori standards' },
-              { badge: 'Attestation', title: 'Embassy Attestation', sub: 'Gulf visa & employment ready' },
-              { badge: 'ISO 9001', title: 'ISO 9001:2018', sub: 'National IMTTI brand standard' },
-            ].map(({ badge, title, sub }) => (
-              <div class="bg-brand-50 border border-brand-100 rounded-xl p-4 card-lift">
-                <div class="inline-block bg-brand-700 text-gold-500 text-xs font-bold px-2 py-0.5 rounded-full mb-2">{badge}</div>
+              { img: '/images/logo-iao.png',      imgAlt: 'IAO-USA accreditation logo',           title: 'International Accreditation Org.', sub: 'USA-based independent accreditation' },
+              { img: '/images/cache-logo.png',    imgAlt: 'UK CACHE Level 3 logo',                title: 'UK CACHE Level 3',                 sub: 'All courses · Gulf-recognised' },
+              { img: '/images/imac-emblem.png',   imgAlt: 'iMAC accreditation emblem',            title: 'iMAC Accreditation',               sub: 'Global Montessori standards' },
+              { img: '/images/embassy-emblem.png',imgAlt: 'Embassy attestation',                  title: 'Embassy Attestation',              sub: 'Gulf visa & employment ready' },
+              { img: '/images/iso-logo.png',      imgAlt: 'ISO 9001:2018 quality certification',  title: 'ISO 9001:2018',                    sub: 'National IMTTI brand standard' },
+            ].map(({ img, imgAlt, title, sub }) => (
+              <div class="bg-brand-50 border border-brand-100 rounded-xl p-4 card-lift flex flex-col">
+                <div class="h-12 flex items-center mb-3">
+                  <img src={img} alt={imgAlt} class="h-full w-auto object-contain" loading="lazy" />
+                </div>
                 <div class="font-semibold text-brand-700 text-sm leading-snug">{title}</div>
                 <div class="text-gray-500 text-xs mt-0.5">{sub}</div>
               </div>
